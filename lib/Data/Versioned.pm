@@ -247,6 +247,40 @@ sub delete_rev_older_than {
     return;
 }
 
+=item2 clear_revs
+
+Clear all revision history for the key.
+Head revision number is kept intact.
+
+=cut
+
+sub clear_revs {
+    my ($self, $name) = @_;
+    croak "name parameter must be specified" unless defined $name;
+
+    my $struct = $self->{revdata}->{$name};
+    if ($struct) {
+        $struct->{data} = [];
+    }
+    return;
+}
+
+=item2 remove
+
+Delete all data (including revisions) for the key.
+
+    $data->remove('name');
+
+=cut
+
+sub remove {
+    my ($self, $name) = @_;
+    croak "name parameter must be specified" unless defined $name;
+
+    delete $self->{revdata}->{$name};
+    return;
+}
+
 1;
 __END__
 

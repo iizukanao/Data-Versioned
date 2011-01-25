@@ -109,4 +109,33 @@ is $data->get_rev_data('a', 4), undef, 'rev 4 of c is undef';
 is @$revs, 0, '0 rev available';
 is @{$data->get_data_history('a')}, 0, '0 item of history available';
 
+$data->set('a', rand(10)) for 1..10;
+$revs = $data->get_available_revs('a');
+is @$revs, 10, '10 revs available';
+is @{$data->get_data_history('a')}, 10, '10 items of history available';
+
+is $data->get_last_rev('a'), 10, 'last rev is 10';
+
+diag('clear_revs');
+$data->clear_revs('a');
+$revs = $data->get_available_revs('a');
+is @$revs, 0, '0 rev available';
+is @{$data->get_data_history('a')}, 0, '0 item of history available';
+
+is $data->get_last_rev('a'), 10, 'last rev is 10';
+
+$data->set('a', rand(10)) for 1..10;
+$revs = $data->get_available_revs('a');
+is @$revs, 10, '10 revs available';
+is @{$data->get_data_history('a')}, 10, '10 items of history available';
+
+is $data->get_last_rev('a'), 20, 'last rev is 20';
+
+diag('remove');
+$data->remove('a');
+is $data->get_last_rev('a'), 0, 'last rev is 0';
+$revs = $data->get_available_revs('a');
+is @$revs, 0, '0 rev available';
+is @{$data->get_data_history('a')}, 0, '0 item of history available';
+
 done_testing;
