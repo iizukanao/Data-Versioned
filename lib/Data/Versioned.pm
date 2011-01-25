@@ -163,6 +163,7 @@ sub replace_rev_data {
         croak "set_rev_data($name, $revision, $value): revision is out of bounds";
     }
     $arr->[$index] = $value;
+    return;
 }
 
 =head2 set
