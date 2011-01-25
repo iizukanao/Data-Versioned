@@ -232,6 +232,7 @@ Delete revisions that are older than specified value.
 sub delete_rev_older_than {
     my ($self, $name, $least_revision) = @_;
     croak "name parameter must be specified" unless defined $name;
+    croak "least_revision parameter must be specified" unless defined $least_revision;
 
     my $struct = $self->{revdata}->{$name};
     my $last_rev = $struct->{headrev} || 0;
