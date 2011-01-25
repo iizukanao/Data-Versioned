@@ -42,20 +42,6 @@ our $VERSION = '0.01';
 
 use Carp;
 
-sub _dump {
-    my ($self) = @_;
-
-    use Data::Dumper;
-    print Dumper $self->{revdata};
-}
-
-sub _debug {
-    my ($self) = @_;
-
-    use Devel::Size qw/total_size/;
-    print "total_size: "  . total_size( $self->{revdata} ) . "\n";
-}
-
 =head1 METHODS
 
 =head2 new
