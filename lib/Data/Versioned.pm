@@ -131,8 +131,8 @@ sub get_rev_data {
     }
     my $arr = $struct->{data};
     my $last_rev = $struct->{headrev} || 0;
-    my $index = $#$arr - ($last_rev - $revision);
-    if ($index < 0 || $index > $#$arr) {
+    my $index = $#{$arr} - ($last_rev - $revision);
+    if ($index < 0 || $index > $#{$arr}) {
         carp "get_rev_data($name, $revision): revision is out of bounds";
         return;
     }
@@ -158,8 +158,8 @@ sub replace_rev_data {
     }
     my $arr = $struct->{data};
     my $last_rev = $struct->{headrev} || 0;
-    my $index = $#$arr - ($last_rev - $revision);
-    if ($index < 0 || $index > $#$arr) {
+    my $index = $#{$arr} - ($last_rev - $revision);
+    if ($index < 0 || $index > $#{$arr}) {
         croak "set_rev_data($name, $revision, $value): revision is out of bounds";
     }
     $arr->[$index] = $value;
