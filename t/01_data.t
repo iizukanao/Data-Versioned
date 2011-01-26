@@ -40,14 +40,14 @@ is $data->get_rev_data('a', 2), 'g', 'rev 2 of a is changed';
 is $data->get_rev_data('a', 3), 'e', 'rev 3 of a is e';
 is_deeply $data->get_data_history('a'), ['e', 'g', 'c'], 'get_data_history()';
 
-diag('large data');
+# diag('large data');
 my $longstr = 'あXx' x 1000000;
 $data->replace_rev_data('a', 2, $longstr);
 is $data->get_rev_data('a', 2), $longstr, 'rev 2 of a is a long string';
 
 is $data->get_rev_data('a', 4), undef, 'rev 4 of a is undef';
 
-diag('bulk');
+# diag('bulk');
 $data->set('a', rand(10)) for 1..10;
 is $data->get_last_rev('a'), 13, 'head rev of a is 13';
 is @{$data->get_available_revs('a')}, 13, '13 revs available';
@@ -61,7 +61,7 @@ is $revs->[0], 1, 'oldest available rev is 1';
 is $revs->[-1], 113, 'newest available rev is 113';
 is @{$data->get_data_history('a')}, 113, '113 items of history available';
 
-diag('delete < 114');
+# diag('delete < 114');
 $data->delete_rev_older_than('a', 114);
 
 $revs = $data->get_available_revs('a');
@@ -77,7 +77,7 @@ is $revs->[0], 114, 'oldest available rev is 114';
 is $revs->[-1], 143, 'newest available rev is 143';
 is @{$data->get_data_history('a')}, 30, '30 items of history available';
 
-diag('delete < 129');
+# diag('delete < 129');
 $data->delete_rev_older_than('a', 129);
 $revs = $data->get_available_revs('a');
 is @$revs, 15, '15 revs available';
@@ -85,7 +85,7 @@ is $revs->[0], 129, 'oldest available rev is 129';
 is $revs->[-1], 143, 'newest available rev is 143';
 is @{$data->get_data_history('a')}, 15, '15 items of history available';
 
-diag('delete < 130');
+# diag('delete < 130');
 $data->delete_rev_older_than('a', 130);
 $revs = $data->get_available_revs('a');
 is @$revs, 14, '14 revs available';
@@ -93,7 +93,7 @@ is $revs->[0], 130, 'oldest available rev is 130';
 is $revs->[-1], 143, 'newest available rev is 143';
 is @{$data->get_data_history('a')}, 14, '14 items of history available';
 
-diag('clear');
+# diag('clear');
 $data->clear;
 $revs = $data->get_available_revs('a');
 is @$revs, 0, '0 rev available';
@@ -116,7 +116,7 @@ is @{$data->get_data_history('a')}, 10, '10 items of history available';
 
 is $data->get_last_rev('a'), 10, 'last rev is 10';
 
-diag('clear_revs');
+# diag('clear_revs');
 $data->clear_revs('a');
 $revs = $data->get_available_revs('a');
 is @$revs, 0, '0 rev available';
@@ -131,7 +131,7 @@ is @{$data->get_data_history('a')}, 10, '10 items of history available';
 
 is $data->get_last_rev('a'), 20, 'last rev is 20';
 
-diag('remove');
+# diag('remove');
 $data->remove('a');
 is $data->get_last_rev('a'), 0, 'last rev is 0';
 $revs = $data->get_available_revs('a');
