@@ -57,8 +57,8 @@ $data->set('a', rand(100)) for 1..100;
 is $data->get_last_rev('a'), 113, 'head rev of a is 113';
 $revs = $data->get_available_revs('a');
 is @$revs, 113, '113 revs available';
-is $revs->[0], 1, 'oldest available rev is 1';
-is $revs->[-1], 113, 'newest available rev is 113';
+is $revs->[0], 113, 'newest available rev is 113';
+is $revs->[-1], 1, 'oldest available rev is 1';
 is @{$data->get_data_history('a')}, 113, '113 items of history available';
 
 # diag('delete < 114');
@@ -73,24 +73,24 @@ $data->set('a', rand(1000)) for 1..30;
 is $data->get_last_rev('a'), 143, 'head rev of a is 143';
 $revs = $data->get_available_revs('a');
 is @$revs, 30, '30 revs available';
-is $revs->[0], 114, 'oldest available rev is 114';
-is $revs->[-1], 143, 'newest available rev is 143';
+is $revs->[0], 143, 'newest available rev is 143';
+is $revs->[-1], 114, 'oldest available rev is 114';
 is @{$data->get_data_history('a')}, 30, '30 items of history available';
 
 # diag('delete < 129');
 $data->delete_rev_older_than('a', 129);
 $revs = $data->get_available_revs('a');
 is @$revs, 15, '15 revs available';
-is $revs->[0], 129, 'oldest available rev is 129';
-is $revs->[-1], 143, 'newest available rev is 143';
+is $revs->[0], 143, 'newest available rev is 143';
+is $revs->[-1], 129, 'oldest available rev is 129';
 is @{$data->get_data_history('a')}, 15, '15 items of history available';
 
 # diag('delete < 130');
 $data->delete_rev_older_than('a', 130);
 $revs = $data->get_available_revs('a');
 is @$revs, 14, '14 revs available';
-is $revs->[0], 130, 'oldest available rev is 130';
-is $revs->[-1], 143, 'newest available rev is 143';
+is $revs->[0], 143, 'newest available rev is 143';
+is $revs->[-1], 130, 'oldest available rev is 130';
 is @{$data->get_data_history('a')}, 14, '14 items of history available';
 
 # diag('clear');

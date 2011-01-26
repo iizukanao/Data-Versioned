@@ -108,7 +108,7 @@ sub get_available_revs {
     my @revs;
     if ( $num > 0 ) {
         my $last_rev = $self->{revdata}->{$name}->{headrev} || 0;
-        @revs = ($last_rev-$num+1 .. $last_rev);
+        @revs = reverse ($last_rev-$num+1 .. $last_rev);
     }
     return \@revs;
 }
