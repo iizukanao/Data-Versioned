@@ -21,7 +21,7 @@ is $data->get_last_rev('b'), 1, 'head rev of b is 1';
 
 my $revs = $data->get_available_revs('a');
 is @$revs, 3, '3 revs available';
-is_deeply $data->get_data_history('a'), ['c', 'd', 'e'], 'get_data_history()';
+is_deeply $data->get_data_history('a'), ['e', 'd', 'c'], 'get_data_history()';
 
 is $data->get_rev_data('a', 0), undef, 'rev 0 of a is undef';
 is $data->get_rev_data('a', 1), 'c', 'rev 1 of a is c';
@@ -32,13 +32,13 @@ $data->replace_rev_data('a', 2, 'あいう');
 is $data->get_rev_data('a', 1), 'c', 'rev 1 of a is c';
 is $data->get_rev_data('a', 2), 'あいう', 'rev 2 of a is changed';
 is $data->get_rev_data('a', 3), 'e', 'rev 3 of a is e';
-is_deeply $data->get_data_history('a'), ['c', 'あいう', 'e'], 'get_data_history()';
+is_deeply $data->get_data_history('a'), ['e', 'あいう', 'c'], 'get_data_history()';
 
 $data->replace_rev_data('a', 2, 'g');
 is $data->get_rev_data('a', 1), 'c', 'rev 1 of a is c';
 is $data->get_rev_data('a', 2), 'g', 'rev 2 of a is changed';
 is $data->get_rev_data('a', 3), 'e', 'rev 3 of a is e';
-is_deeply $data->get_data_history('a'), ['c', 'g', 'e'], 'get_data_history()';
+is_deeply $data->get_data_history('a'), ['e', 'g', 'c'], 'get_data_history()';
 
 diag('large data');
 my $longstr = 'あXx' x 1000000;

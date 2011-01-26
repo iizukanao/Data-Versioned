@@ -87,7 +87,7 @@ sub get_data_history {
     unless ($struct) {
         return [];
     }
-    return $struct->{data};
+    return [ reverse @{ $struct->{data} } ];
 }
 
 =head2 get_available_revs
