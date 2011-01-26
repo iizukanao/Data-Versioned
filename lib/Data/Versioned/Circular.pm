@@ -10,9 +10,9 @@ Data::Versioned::Circular - Maintain revision history of data as circular buffer
 
   use Data::Versioned::Circular;
 
-  my $data = Data::Versioned::Circular->new;
+  my $data = Data::Versioned::Circular->new(size => 10);
 
-  $data->set('name', 'Taro');  # revision raises up to 1
+  $data->set('name', 'Taro');  # revision is raised to 1
   print "revision: " . $data->get_last_rev('name') . "\n";  # prints 1
 
   $data->set('name', 'Jiro');

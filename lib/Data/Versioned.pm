@@ -12,7 +12,7 @@ Data::Versioned - Maintain revision history of data
 
   my $data = Data::Versioned->new;
 
-  $data->set('name', 'Taro');  # revision raises up to 1
+  $data->set('name', 'Taro');  # revision is raised to 1
   print "revision: " . $data->get_last_rev('name') . "\n";  # prints 1
 
   $data->set('name', 'Jiro');
